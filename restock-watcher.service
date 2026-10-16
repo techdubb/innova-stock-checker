@@ -1,0 +1,28 @@
+# Install: see README "Option 1". Assumes the code lives in /opt/restock-watcher
+# with a virtualenv at /opt/restock-watcher/.venv and config in /opt/restock-watcher/.env.
+[Unit]
+Description=Innova disc restock watcher
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/restock-watcher
+EnvironmentFile=/opt/restock-watcher/.env
+# State lives in /var/lib/restock-watcher (created by StateDirectory below).
+Environment=STATE_FILE=/var/lib/restock-watcher/state.json
+Environment=PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/restock-watcher/.venv/bin/python /opt/restock-watcher/watcher.py
+Restart=always
+RestartSec=30
+
+# Run as a throwaway unprivileged user with a private, persistent state dir.
+DynamicUser=yes
+StateDirectory=restock-watcher
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
