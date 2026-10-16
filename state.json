@@ -1,10 +1,10 @@
 {
   "current": "IN_STOCK",
   "last_known": "IN_STOCK",
-  "consecutive_in_stock": 1,
+  "consecutive_in_stock": 2,
   "alerted": true,
-  "reminders_sent": 0,
-  "last_alert_at": "2026-10-16T20:39:34.078231+00:00",
+  "reminders_sent": 1,
+  "last_alert_at": "2026-10-16T23:01:18.022638+00:00",
   "unhealthy_since": null,
   "failure_alert_sent": false,
   "last_heartbeat_date": "2026-10-16"
